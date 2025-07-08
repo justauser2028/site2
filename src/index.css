@@ -9,13 +9,13 @@
   overflow: hidden;
 }
 
-/* Isometric Room with proper 45-degree perspective */
+/* Isometric Room with 45-degree perspective (reduced from 60) */
 .isometric-room {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateX(60deg) rotateY(-45deg) scale(0.8);
+  transform: rotateX(45deg) rotateY(-45deg) scale(0.9);
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
 }
@@ -88,7 +88,7 @@
   border-color: rgba(135, 206, 235, 0.6);
 }
 
-/* Aligned Isometric Walls */
+/* Walls positioned at red edges only - Back and Right walls */
 .isometric-wall-back {
   position: absolute;
   bottom: 200px;
@@ -104,24 +104,6 @@
   border: 2px solid rgba(107, 91, 71, 0.8);
   border-bottom: none;
   box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
-}
-
-.isometric-wall-left {
-  position: absolute;
-  bottom: 200px;
-  left: 50%;
-  transform: translateX(-50%) translateZ(-200px) rotateY(90deg) translateZ(200px);
-  width: 400px;
-  height: 200px;
-  background: linear-gradient(to bottom, 
-    #9d8266 0%, 
-    #8b7355 30%, 
-    #6b5b47 70%, 
-    #5a4a37 100%);
-  border: 2px solid rgba(90, 74, 55, 0.8);
-  border-bottom: none;
-  border-right: none;
-  box-shadow: inset 0 0 50px rgba(0,0,0,0.15);
 }
 
 .isometric-wall-right {
@@ -142,6 +124,11 @@
   box-shadow: inset 0 0 50px rgba(0,0,0,0.15);
 }
 
+/* Remove left wall - no wall where yellow edges are */
+.isometric-wall-left {
+  display: none;
+}
+
 /* Realistic Lighting */
 .isometric-lighting {
   position: absolute;
@@ -156,7 +143,7 @@
   z-index: 1;
 }
 
-/* Alex Character - Realistic isometric positioning */
+/* Alex Character - Adjusted for 45-degree perspective */
 .isometric-character {
   position: absolute;
   bottom: 80px;
@@ -173,7 +160,7 @@
   background-repeat: no-repeat;
   background-position: center;
   filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
-  transform: rotateX(-60deg) rotateY(45deg);
+  transform: rotateX(-45deg) rotateY(45deg);
   transition: all 0.3s ease;
 }
 
@@ -1741,7 +1728,7 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .isometric-room {
-    transform: rotateX(55deg) rotateY(-40deg) scale(0.7);
+    transform: rotateX(40deg) rotateY(-40deg) scale(0.8);
   }
   
   .isometric-floor {
@@ -1750,7 +1737,6 @@
   }
   
   .isometric-wall-back,
-  .isometric-wall-left,
   .isometric-wall-right {
     width: 350px;
     height: 175px;
@@ -1768,7 +1754,7 @@
 
 @media (max-width: 480px) {
   .isometric-room {
-    transform: rotateX(50deg) rotateY(-35deg) scale(0.6);
+    transform: rotateX(35deg) rotateY(-35deg) scale(0.7);
   }
   
   .isometric-floor {
@@ -1777,7 +1763,6 @@
   }
   
   .isometric-wall-back,
-  .isometric-wall-left,
   .isometric-wall-right {
     width: 300px;
     height: 150px;
